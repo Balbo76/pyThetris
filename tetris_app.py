@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
-from SceneManager import SceneManager, GameIntro
-
+from SceneManager import SceneManager, GameIntro, Playing, GameOver
 # Setup pygame engine
 pygame.init()
 flags = pygame.FULLSCREEN
@@ -14,6 +13,10 @@ pygame.display.set_caption("pyThetris")
 director = SceneManager(pygame, screen)
 director.scene = GameIntro()
 director.play()
+director.scene = Playing()
+director.play()
+# director.scene = GameOver()
+# director.play()
 
 # End
 pygame.quit()

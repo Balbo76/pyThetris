@@ -29,7 +29,6 @@ class Game:
     def rotate(self):
         if self._can_rotate():
             self.tetramino_corrente.rotazione = ( self.tetramino_corrente.rotazione + 1 ) % 4
-        pass
 
     def _can_go_down(self):
         pass

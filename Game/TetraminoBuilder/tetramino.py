@@ -13,7 +13,7 @@ class Tetramino:
         self.data = tetramini[id]
 
     def get_state(self):
-        return self.data(self.rotazione)
+        return self.data[self.rotazione]
 
     def rotate_clockwise(self):
         self.rotazione += 1

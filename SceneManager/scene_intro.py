@@ -8,13 +8,16 @@ class GameIntro(Scene):
 
         surf_panda = pygame.image.load(join("assets", "images", "pyThetris.png"))
         rect_panda = surf_panda.get_rect()
-        screen.blit(surf_panda, rect_panda)
+        sound1 = pygame.mixer.Sound(join("assets", "sounds", "RAP_INTR.WAV"))
 
+        screen.blit(surf_panda, rect_panda)
+        sound1.play()
 
         clk = pygame.time.Clock()
         pressed = None
         # --- Ciclo principale
         done = False
+        frame_number = 0
         while not done:
             # --- Ciclo degli eventi
             for ev in pygame.event.get():
@@ -30,6 +33,7 @@ class GameIntro(Scene):
 
             pygame.display.flip()
             clk.tick(30)
+            frame_number += 1
 
 
 
