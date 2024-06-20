@@ -2,7 +2,8 @@ from .tetramini import tetramini
 class Tetramino:
 
     def __str__(self):
-        return self.data(self.rotazione)
+        return ''.join([str(elem) for elem in self.data[self.rotazione]])
+
 
     def __init__(self, id):
         self.corrente = 0       # Id da 0 a 6 che identifica il pezzo
