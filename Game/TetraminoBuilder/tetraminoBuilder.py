@@ -4,5 +4,5 @@ import random
 
 class TetraminoBuilder(metaclass=SingletonMeta):
 
-    def get_next(self):
+    def build_next(self):
         return Tetramino(int(random.random()*7))

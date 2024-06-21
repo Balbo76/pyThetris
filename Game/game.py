@@ -8,67 +8,54 @@ class Game:
         self.lineeFatte = 0
         self.gameOver = False
         self.playground = Playground();
-        self.tetramino_corrente = TetraminoBuilder().get_next()
-        self.prossimo_tetramino = TetraminoBuilder().get_next()
+        self.current = TetraminoBuilder().build_next()
+        self.next = TetraminoBuilder().build_next()
 
     def tick(self):
         pass
 
     def move_left(self):
         if self._can_go_left():
-            self.tetramino_corrente.x -= 1
+            self.current.x -= 1
 
     def move_right(self):
         if self._can_go_right():
-            self.tetramino_corrente.x += 1
+            self.current.x += 1
 
     def move_Down(self):
         if self._can_go_down():
-            self.tetramino_corrente.y += 1
+            self.current.y += 1
 
     def rotate(self):
         if self._can_rotate():
-            self.tetramino_corrente.rotazione = ( self.tetramino_corrente.rotazione + 1 ) % 4
+            self.current.rotazione = (self.current.rotazione + 1) % 4
 
     def _can_go_down(self):
-        pass
+        return self.__can_go(0,1,0)
 
     def _can_go_left(self):
-        pass
+        return self.__can_go(-1,0,0)
 
     def _can_go_right(self):
-        pass
+        return self.__can_go(1,0,0)
 
     def _can_rotate(self):
-        pass
+        can_rotate = True
+        return can_rotate
 
     def __can_go(self, delta_x, delta_y, delta_rotation):
         can_go = True
-        tetramino = self.tetramino_corrente
+        tetramino = self.current
         new_x = tetramino.x + delta_x
         new_y = tetramino.y + delta_y
         new_rotation = (tetramino.rotazione + delta_rotation) % 4
 
         for i in range(4):
             for j in range(4):
-                if self.tetramino_corrente.data[new_rotation][i][j] == 1:
+                if self.current.data[new_rotation][i][j] == 1:
                     x = new_x + j
                     y = new_y + i
-
-        """         
-                       for (var i=0; i<=3; i++) {
-                           for (var j=0; j<=3; j++) {	
-                               if (tetramini[this.corrente][mr][i][j] == 1) {
-                                   var 
-                                       x = mx + j,
-                                       y = my + i;
-
-                                   if (that.schermata[y][x] > 0){
-                                       canMove = false;
-                                   }
-                               }
-                           }
-                       }
-               """
+                    if self.playground.data[y][x] > 0:
+                        can_go = False
 
         return can_go

@@ -13,7 +13,8 @@ class Render():
 
     def render(self, partita: Game):
         playground = partita.playground.data
-        tetramino = partita.tetramino_corrente
+        tetramino = partita.current
+        self.__screen.fill("black")
 
         y = 0
         for row in playground:

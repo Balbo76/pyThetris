@@ -34,7 +34,6 @@ class Playing(Scene):
             if pressed == K_DOWN:
                 pass
 
-
             render.render(partita)
             pygame.display.flip()
             clk.tick(30)
