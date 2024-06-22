@@ -2,38 +2,51 @@ from .scene_interface import Scene
 from .render import Render
 from pygame.locals import *
 from os.path import join
-from Game import Game
+from SinglePlayer import SinglePlayer
 
 class Playing(Scene):
+
     def run(self, pygame, screen):
 
-        render = Render(pygame, screen)
-        partita = Game()
+        graphicsRender = Render(pygame, screen)
+        partita = SinglePlayer()
 
         clk = pygame.time.Clock()
         pressed = None
         done = False
+        i = 0
+
         while not done:
-            for ev in pygame.event.get():
-                if ev.type == pygame.QUIT:
-                    done = True
-                elif ev.type == KEYDOWN and ev.key in [K_SPACE, K_LEFT, K_RIGHT, K_DOWN]:
-                    pressed = ev.key
-                elif ev.type == KEYUP and ev.key == pressed:
-                    pressed = None
+            i += 1
+            
+            if (i % 30) == 0:
+                partita.tick()
 
-            if pressed == K_SPACE:
-                partita.rotate()
+            if (i % 2) == 0:
+                for ev in pygame.event.get():
+                    if ev.type == pygame.QUIT:
+                        done = True
+                    elif ev.type == KEYDOWN and ev.key in [K_SPACE, K_LEFT, K_RIGHT, K_DOWN]:
+                        pressed = ev.key
+                    elif ev.type == KEYUP and ev.key == pressed:
+                        pressed = None
 
-            if pressed == K_LEFT:
-                partita.move_left()
+                if pressed == K_SPACE:
+                    partita.rotate()
 
-            if pressed == K_RIGHT:
-                partita.move_right()
+                if pressed == K_LEFT:
+                    partita.move_left()
 
-            if pressed == K_DOWN:
-                pass
+                if pressed == K_RIGHT:
+                    partita.move_right()
 
-            render.render(partita)
+                if pressed == K_DOWN:
+                    partita.move_down()
+
+
+            if (i % 90) == 0:
+                i = 0
+
+            graphicsRender.draw(partita)
             pygame.display.flip()
             clk.tick(30)
