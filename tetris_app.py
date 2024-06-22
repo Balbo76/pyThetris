@@ -15,8 +15,8 @@ director = SceneManager(pygame, screen)
 # director.play()
 director.scene = Playing()
 director.play()
-# director.scene = GameOver()
-# director.play()
+director.scene = GameOver()
+director.play()
 
 # End
 pygame.quit()

@@ -47,6 +47,9 @@ class Playing(Scene):
             if (i % 90) == 0:
                 i = 0
 
+            if partita.gameOver:
+                done = True
+
             graphicsRender.draw(partita)
             pygame.display.flip()
             clk.tick(30)

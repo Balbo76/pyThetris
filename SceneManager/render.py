@@ -52,7 +52,6 @@ class Render():
                     rect_y = delta_y + (y * block_width)
                     pygame.draw.rect(self.__screen, fill_color,(rect_x, rect_y, (block_width - 1), (block_width - 1)), 0)
 
-
     def _get_tetromino_fill_color(self, id):
         match id:
             case 1:
