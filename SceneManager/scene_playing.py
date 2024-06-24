@@ -22,7 +22,7 @@ class Playing(Scene):
             if (i % 30) == 0:
                 partita.tick()
 
-            if (i % 2) == 0:
+            if (i % 3) == 0:
                 for ev in pygame.event.get():
                     if ev.type == pygame.QUIT:
                         done = True

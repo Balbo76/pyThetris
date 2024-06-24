@@ -1,7 +1,9 @@
+import random
 from .tetrominos_data import tetrominos_vector_data
 class Tetromino:
 
-    def __init__(self, id):
+    def __init__(self):
+        id = int(random.random() * 7)
         self.id = id + 1
         self.rotation_step = 0
         self.x = 4

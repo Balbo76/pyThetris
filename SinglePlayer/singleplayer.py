@@ -1,6 +1,5 @@
-from SinglePlayer.playground import Playground
-from .TetraminoBuilder import TetrominoBuilder
-import pdb
+from .playground import Playground
+from .tetromino import Tetromino
 
 class SinglePlayer:
 
@@ -8,17 +7,22 @@ class SinglePlayer:
         self.lineeFatte = 0
         self.gameOver = False
         self.playground = Playground()
-        self.current = TetrominoBuilder().build_next()
-        self.next = TetrominoBuilder().build_next()
+        self.current = Tetromino()
+        self.next = Tetromino()
 
     def tick(self):
+        """
+        Bring the game status to the next step: this means
+        our tetramino will go down (fall) one position otherwise,
+        if there is no other space to fall, it will be added to playground and related check will be done.
+        """
         if self._can_go_down():
             self.move_down()
         else:
             self._add_to_playground()
-            new_lines_number = self._check_for_new_lines()
+            self.lineeFatte += self._check_for_new_lines()
             self.current = self.next
-            self.next = TetrominoBuilder().build_next()
+            self.next = Tetromino()
             if self._check_if_game_over():
                 self.gameOver = True
 
