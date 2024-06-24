@@ -1,10 +1,12 @@
 from .scene_interface import Scene
+import pygame
 from pygame.locals import *
 from os.path import join
 
 
 class GameIntro(Scene):
-    def run(self, pygame, screen):
+
+    def run(self, screen):
 
         surf_panda = pygame.image.load(join("assets", "images", "pyThetris.png"))
         rect_panda = surf_panda.get_rect()

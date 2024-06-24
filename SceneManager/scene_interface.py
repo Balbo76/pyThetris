@@ -1,8 +1,6 @@
-from abc import ABC, abstractmethod
-class Scene(ABC):
+import pygame
 
-    def __init__(self):
-        pass
-    @abstractmethod
-    def run(self):
+class Scene():
+
+    def run(self, screen):
         pass

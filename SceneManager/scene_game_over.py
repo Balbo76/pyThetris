@@ -4,7 +4,7 @@ from os.path import join
 
 
 class GameOver(Scene):
-    def run(self, pygame, screen):
+    def run(self, screen):
 
         surf_gameover = pygame.image.load(join("assets", "images", "gameover.bmp"))
         rect_gameover = surf_gameover.get_rect()

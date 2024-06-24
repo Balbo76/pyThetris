@@ -1,7 +1,7 @@
 from .playground import Playground
 from .tetromino import Tetromino
 
-class SinglePlayer:
+class PlayerGame:
 
     def __init__(self):
         self.lineeFatte = 0

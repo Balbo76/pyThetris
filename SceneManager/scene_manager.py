@@ -4,9 +4,8 @@ from .scene_interface import Scene
 
 class SceneManager(metaclass=SingletonMeta):
 
-    def __init__(self, pygame, screen):
-        self.__pygame = pygame
-        self.__screen = screen
+    def __init__(self, screen):
+        self._screen = screen
 
     @property
     def scene(self) -> Scene:
@@ -17,7 +16,7 @@ class SceneManager(metaclass=SingletonMeta):
         self._scena = scena
 
     def play(self) -> None:
-        result = self._scena.run(self.__pygame, self.__screen)
+        result = self._scena.run(self._screen)
 
 
 
