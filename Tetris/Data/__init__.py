@@ -1,0 +1,1 @@
+from .tetrominos_data import tetrominos_vector_data

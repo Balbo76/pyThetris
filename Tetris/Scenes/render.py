@@ -1,5 +1,5 @@
 import pygame
-from PlayerGame import PlayerGame
+from Tetris.PlayerGame import PlayerGame
 
 block_width = 20
 delta_x = 150

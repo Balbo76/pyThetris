@@ -1,7 +1,7 @@
-from .scene_interface import Scene
 import pygame
 from pygame.locals import *
 from os.path import join
+from Tetris.Abstract.scene_interface import Scene
 
 
 class GameIntro(Scene):

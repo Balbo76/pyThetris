@@ -1,5 +1,5 @@
 import random
-from .tetrominos_data import tetrominos_vector_data
+from Tetris.Data import tetrominos_vector_data
 class Tetromino:
 
     def __init__(self):

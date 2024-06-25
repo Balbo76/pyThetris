@@ -1,4 +1,5 @@
-from .scene_interface import Scene
+from Tetris.Abstract.scene_interface import Scene
+import pygame
 from pygame.locals import *
 from os.path import join
 

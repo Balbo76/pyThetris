@@ -1,5 +1,5 @@
-from Helpers.singleton_meta import SingletonMeta
-from .scene_interface import Scene
+from Tetris.Abstract.singleton_meta import SingletonMeta
+from Tetris.Abstract.scene_interface import Scene
 
 
 class SceneManager(metaclass=SingletonMeta):
