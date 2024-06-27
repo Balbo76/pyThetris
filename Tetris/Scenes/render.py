@@ -1,7 +1,7 @@
 import pygame
 from Tetris.PlayerGame import PlayerGame
 
-block_width = 20
+block_width = 25
 delta_x = 150
 delta_y = 100
 class Render():
@@ -30,7 +30,10 @@ class Render():
                     fill_color = self._get_tetromino_fill_color(el)
                     rect_x = delta_x + (x * block_width)
                     rect_y = delta_y + (y * block_width)
-                    pygame.draw.rect(self.screen, fill_color, (rect_x, rect_y, (block_width), (block_width)), 0)
+                    if el == 255:
+                        pygame.draw.rect(self.screen, fill_color, (rect_x, rect_y, (block_width), (block_width)), 0)
+                    if el in [1, 2, 3, 4, 5, 6, 7]:
+                        pygame.draw.rect(self.screen, fill_color, (rect_x + 1, rect_y + 1, (block_width - 2), (block_width - 2)), 0)
                 x += 1
             y += 1
 
@@ -43,7 +46,7 @@ class Render():
                 if tetramino_state[y][x] != 0:
                     rect_x = delta_x + (x * block_width) + (tetromino.x * block_width)
                     rect_y = delta_y + (y * block_width) + (tetromino.y * block_width)
-                    pygame.draw.rect(self.screen, fill_color, (rect_x, rect_y, (block_width - 1), (block_width - 1)), 0)
+                    pygame.draw.rect(self.screen, fill_color, (rect_x + 1, rect_y + 1, (block_width - 2), (block_width - 2)), 0)
 
     def _draw_next(self, next_tetromino):
         # Disegna il prossimo tetramino
@@ -54,7 +57,7 @@ class Render():
                 if tetramino_prossimo_state[y][x] != 0:
                     rect_x =  (x * block_width) + 600
                     rect_y =  (y * block_width) + 100
-                    pygame.draw.rect(self.screen, fill_color, (rect_x, rect_y, (block_width - 1), (block_width - 1)), 0)
+                    pygame.draw.rect(self.screen, fill_color, (rect_x + 1, rect_y + 1, (block_width - 2), (block_width - 2)), 0)
 
     def _draw_linee_fatte(self, linee_fatte):
         font = pygame.font.Font(pygame.font.get_default_font(), 36)
@@ -84,3 +87,7 @@ class Render():
                 return (220, 20, 60)
             case 255:
                 return "white"
+
+    def _draw_block(self, el, rect_x, rect_y):
+        fill_color = self._get_tetromino_fill_color(el)
+        pygame.draw.rect(self.screen, fill_color, (rect_x, rect_y, (block_width), (block_width)), 0)

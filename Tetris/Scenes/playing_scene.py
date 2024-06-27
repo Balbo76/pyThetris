@@ -3,6 +3,7 @@ from Tetris.Abstract.scene_interface import Scene
 from .render import Render
 from pygame.locals import *
 from Tetris.PlayerGame import PlayerGame
+from ..keyboard_handler import KeyboardHandler
 
 class Playing(Scene):
     def __init__(self):
@@ -10,34 +11,20 @@ class Playing(Scene):
 
     def run(self, screen):
 
-        clock = pygame.time.Clock()
         graphicsRender = Render(screen)
         partita = PlayerGame()
 
+        key_event = KeyboardHandler([K_SPACE, K_LEFT, K_RIGHT, K_DOWN, K_ESCAPE])
 
-        key_pressed = {
-            K_SPACE: False,
-            K_LEFT: False,
-            K_RIGHT: False,
-            K_DOWN: False,
-            K_ESCAPE: False,
-        }
         done = False
         i = 0
 
         while not done:
-            i += 1
-            fps = clock.get_fps()
-
-            for ev in pygame.event.get([KEYDOWN, KEYUP, QUIT], True):
-                if ev.type == pygame.QUIT:
-                    quit()
-                elif ev.type == KEYDOWN and ev.key in [K_SPACE, K_LEFT, K_RIGHT, K_DOWN, K_ESCAPE]:
-                    key_pressed[ev.key] = True
-                elif ev.type == KEYUP and ev.key in [K_SPACE, K_LEFT, K_RIGHT, K_DOWN, K_ESCAPE]:
-                    key_pressed[ev.key] = False
+            fps = self.clock.get_fps()
+            key_event.handle(True)
 
             if (i % 10) == 0:
+                key_pressed = key_event.get_pressed_keys()
                 if key_pressed[K_SPACE]:
                     partita.rotate()
                 if key_pressed[K_LEFT]:
@@ -52,12 +39,12 @@ class Playing(Scene):
             if (i % 60) == 0:
                 partita.tick()
 
-            if (i % 120) == 0:
-                i = 0
-
             if partita.gameOver:
                 done = True
 
             graphicsRender.draw(partita, fps)
             pygame.display.flip()
-            clock.tick(60)
+            self.clock.tick(60)
+            i += 1
+            if (i % 60) == 0:
+                i = 0
